@@ -2,10 +2,11 @@ import { useContext } from "react";
 import Context from "../context/Context";
 
 const Header = () => {
-  const { inputRef, handleCity, getWeather, grad } = useContext(Context);
+  const { inputRef, handleCity, getWeather } = useContext(Context);
 
   return (
     <div className="input">
+      <h1>My Weather</h1>
       <input
         type="text"
         ref={inputRef}
@@ -13,7 +14,6 @@ const Header = () => {
         placeholder="Pretraži grad"
         onKeyDown={getWeather}
       />
-      <h1>{grad}</h1>
     </div>
   );
 };

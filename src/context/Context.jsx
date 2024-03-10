@@ -11,6 +11,12 @@ export const WeatherProvider = ({ children }) => {
   const [chart, setChart] = useState([]);
   const [selectedDate, setSelectedDate] = useState(0);
 
+  const [currentWeather, setCurrentWeather] = useState({});
+  const api = {
+    key: "030715aa3f60613533c215ff8c44708e",
+    base: "https://api.openweathermap.org/data/2.5/",
+  };
+
   let inputRef = useRef();
 
   const handleCity = (e) => {
@@ -18,6 +24,7 @@ export const WeatherProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    if (!grad) return; // Don't proceed if grad is empty
     fetch(`https://geocoding-api.open-meteo.com/v1/search?name=${grad}`)
       .then((res) => res.json())
       .then((data) => {
@@ -29,15 +36,24 @@ export const WeatherProvider = ({ children }) => {
       });
   }, [grad]);
 
+  useEffect(() => {
+    if (hourly.length > 0) {
+      setChart([...hourly[0]]);
+      setDataLoaded(true);
+      setSelectedDate(daily.time[0]);
+    }
+  }, [hourly, daily]);
+
   const getWeather = (e) => {
     if (e.key === "Enter") {
-      fetch(
-        `https://api.open-meteo.com/v1/forecast?latitude=${koordinate.lat}&longitude=${koordinate.long}&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min`
-      )
+      const forecastUrl = `https://api.open-meteo.com/v1/forecast?latitude=${koordinate.lat}&longitude=${koordinate.long}&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min`;
+      const currentWeatherUrl = `${api.base}weather?q=${grad}&units=metric&APPID=${api.key}`;
+
+      fetch(forecastUrl)
         .then((res) => res.json())
         .then((data) => {
           setDaily(data.daily);
-          const newData = Array.from({ length: 7 }, (_, i) =>
+          const newData = Array.from({ length: 5 }, (_, i) =>
             data.hourly.temperature_2m.slice(i * 24, (i + 1) * 24)
           );
           setHourly(newData);
@@ -46,7 +62,16 @@ export const WeatherProvider = ({ children }) => {
         .catch((error) => {
           console.log("Error kod dohvaćivanja vremena", error);
         });
+
+      fetch(currentWeatherUrl)
+        .then((res) => res.json())
+        .then((data) => setCurrentWeather(data))
+        .catch((error) => {
+          console.log("Error kod dohvaćivanja dnevne prognoze", error);
+        });
       inputRef.current.value = "";
+
+      setDataLoaded(false);
     }
   };
 
@@ -67,6 +92,7 @@ export const WeatherProvider = ({ children }) => {
         setDataLoaded,
         selectedDate,
         setSelectedDate,
+        currentWeather,
       }}
     >
       {children}
