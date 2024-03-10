@@ -1,0 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.input {
+  background-color: azure;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.2rem;
+  color: black;
+  padding: 2rem;
+}
+
+.input h1 {
+  text-transform: uppercase;
+  font-weight: 700;
+  font-size: 2.4rem;
+}
+
+input[type="text"] {
+  border-radius: 25px;
+  padding: 0.8rem;
+}
+
+.weather-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: brown;
+  color: #fff;
+  padding: 2rem;
+  border-radius: 25px;
+  font-size: 1.2rem;
+  display: flex;
+  gap: 0.5rem;
+  cursor: pointer;
+  transition: transform 200ms ease-in;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.weather-list {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 2rem;
+  padding: 0 2rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.highchart {
+  width: 70vw;
+  margin: auto;
+  padding-top: 2rem;
+}
