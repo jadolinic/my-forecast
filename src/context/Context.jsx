@@ -46,7 +46,7 @@ export const WeatherProvider = ({ children }) => {
 
   const getWeather = (e) => {
     if (e.key === "Enter") {
-      const forecastUrl = `https://api.open-meteo.com/v1/forecast?latitude=${koordinate.lat}&longitude=${koordinate.long}&hourly=temperature_2m&daily=temperature_2m_max,temperature_2m_min`;
+      const forecastUrl = `https://api.open-meteo.com/v1/forecast?latitude=${koordinate.lat}&longitude=${koordinate.long}&hourly=temperature_2m&daily=weather_code,temperature_2m_max,temperature_2m_min`;
       const currentWeatherUrl = `${api.base}weather?q=${grad}&units=metric&APPID=${api.key}`;
 
       fetch(forecastUrl)
@@ -58,6 +58,7 @@ export const WeatherProvider = ({ children }) => {
           );
           setHourly(newData);
           setChart([]);
+          console.log(data.daily);
         })
         .catch((error) => {
           console.log("Error kod dohvaćivanja vremena", error);
@@ -70,6 +71,7 @@ export const WeatherProvider = ({ children }) => {
           console.log("Error kod dohvaćivanja dnevne prognoze", error);
         });
       inputRef.current.value = "";
+      inputRef.current.blur();
 
       setDataLoaded(false);
     }

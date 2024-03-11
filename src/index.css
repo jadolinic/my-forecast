@@ -16,18 +16,14 @@ html {
   align-items: center;
   justify-content: start;
   flex-direction: column;
+  min-height: 100vh;
+  max-width: 100vw;
   font-size: 1.5rem;
-  height: 100vh;
-  width: 100vw;
-  background: linear-gradient(
-    180deg,
-    rgba(9, 9, 71, 1) 0%,
-    rgba(90, 88, 90, 1) 100%
-  );
+  background: url("./assets/main.jpg") no-repeat center/cover;
 }
 
 .input {
-  color: #fff;
+  color: rgba(9, 9, 71, 1);
   gap: 1rem;
   padding-top: 2rem;
   font-weight: 200;
@@ -44,7 +40,7 @@ input[type="text"] {
   border-radius: 25px;
   border: 1px solid rgba(255, 255, 255, 0.8);
   background: rgba(255, 255, 255, 0.1);
-  color: #f8f8f8;
+  color: rgba(9, 9, 71, 1);
 }
 
 ::placeholder {
@@ -57,7 +53,7 @@ input[type="text"] {
   display: flex;
   flex-direction: column;
   font-size: 2rem;
-  width: 50rem;
+  max-width: 100%;
   color: #fff;
   margin-top: 2.2rem;
   border-radius: 25px;
@@ -83,6 +79,7 @@ input[type="text"] {
   font-size: 4rem;
   justify-content: space-between;
   margin-top: 9rem;
+  gap: 2rem;
 }
 
 .humidity {
@@ -91,7 +88,6 @@ input[type="text"] {
 
 .wind {
   display: flex;
-  gap: 1rem;
 }
 
 .weather-card {
@@ -107,8 +103,8 @@ input[type="text"] {
   color: white;
   padding: 2rem;
   width: 15rem;
-  border-radius: 25px;
-  margin-bottom: 2rem;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
   display: flex;
   gap: 1rem;
   cursor: pointer;
@@ -120,166 +116,223 @@ input[type="text"] {
 }
 
 .temp {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
+  display: flex;
 }
 
 .day {
   font-size: 2.3rem;
 }
 
+.forecast {
+  font-weight: 700;
+}
+
 .weather-list {
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 3rem;
+  gap: 10rem;
   margin-top: 4rem;
-  padding: 0 2rem;
-  width: 100vw;
 }
 
 .highchart {
-  width: 100vw;
+  width: 90vw;
+  margin-bottom: 1rem;
 }
 
-@media screen and (max-width: 768px) {
+/* Extra Large devices */
+@media (min-width: 1200px) {
+}
+
+/* Large devices */
+@media (min-width: 992px) and (max-width: 1200px) {
   .App {
-    background: url("../src/assets/main.jpg") no-repeat center/cover;
+    height: 100vh;
+    background: url("../src/assets/main.jpg") cover;
   }
-  .description {
-    left: 50rem;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .App {
-    background: url("../src/assets/main.jpg") no-repeat center/cover;
-  }
-  .day {
-    font-size: 1.5rem;
-  }
-
-  .temp {
-    font-size: 1rem;
-  }
-
-  .input {
-    font-size: 1.5rem;
-  }
-
-  .App {
-    font-size: 2.3rem;
-  }
-
-  .temperature {
-    font-size: 13rem;
-  }
-
-  .container {
-    gap: 10rem;
-  }
-
-  .bottom {
-    justify-content: space-between;
-  }
-
-  input[type="text"] {
-    padding: 0.6rem 1rem;
-    font-size: 2rem;
-  }
-}
-
-@media screen and (max-width: 560px) {
-  .weather-card {
-    border-radius: 15px;
-    margin-top: 5rem;
-    width: 7rem;
-  }
-
-  .temperature {
-    font-size: 8rem;
-  }
-
-  .bottom {
-    font-size: 4rem;
-  }
-
-  .container {
-    gap: 9rem;
-  }
-}
-@media screen and (max-width: 490px) {
-  .container {
+  .weather-list {
     gap: 4rem;
-    width: 100%;
-    padding-right: 1rem;
+  }
+
+  .location {
+    font-size: 4rem;
   }
 
   .temperature {
-    font-size: 12rem;
-  }
-  .description {
-    left: 40rem;
-  }
-  .weather-list {
-    gap: 3rem;
-  }
-}
-
-@media screen and (max-width: 414px) {
-  .weather-list {
-    gap: 1.5rem;
+    font-size: 22rem;
   }
 
   .description {
-    left: 34rem;
-  }
-}
-
-@media screen and (max-width: 377px) {
-  .App {
-    background: url("../src/assets/main.jpg") no-repeat center/cover;
-  }
-  .input {
-    font-size: 1.3rem;
-  }
-
-  input[type="text"] {
-    height: 3rem;
-    width: 16rem;
-    padding-bottom: 0.3rem;
-  }
-  input[type="text"]::placeholder {
-    font-size: 1.8rem;
-  }
-
-  .container {
-    font-size: 3rem;
-    gap: 0;
-  }
-
-  .description {
-    left: 28rem;
-    bottom: 3rem;
-  }
-  .temperature {
-    font-size: 10rem;
+    font-size: 5rem;
+    left: 55rem;
+    bottom: 15rem;
   }
 
   .bottom {
+    font-size: 6rem;
     color: rgba(9, 9, 71, 1);
+    font-weight: 700;
+    gap: 4rem;
   }
 
-  .humidity p {
+  .highchart {
+    min-width: 100%;
+    margin-bottom: 0;
+  }
+}
+
+/* Medium devices */
+@media (min-width: 768px) and (max-width: 992px) {
+  .App {
+    height: 100vh;
+    background: url("../src/assets/main.jpg") cover;
+  }
+  input[type="text"] {
+    font-size: 1.5rem;
+    height: 3.5rem;
+  }
+
+  .location {
+    font-size: 3rem;
+  }
+
+  .temperature {
+    font-size: 22rem;
+  }
+
+  .description {
+    left: 44rem;
+    bottom: 13rem;
     font-size: 4rem;
+  }
+
+  .bottom {
+    font-size: 4rem;
+    color: rgba(9, 9, 71, 1);
+    font-weight: 700;
+  }
+
+  .highchart {
+    min-width: 100%;
+    margin-bottom: 0;
+  }
+
+  .weather-list {
+    gap: 1rem;
+  }
+
+  .weather-card {
+    font-size: 1.2rem;
+    width: 13rem;
+  }
+}
+
+/*  Small devices (tablets) */
+
+@media (min-width: 576px) and (max-width: 768px) {
+  .App {
+    height: 100vh;
+    background: url("../src/assets/main.jpg") cover;
+  }
+  input[type="text"] {
+    font-size: 1.5rem;
+    height: 3.5rem;
+  }
+
+  .location {
+    font-size: 3rem;
+  }
+  .temperature {
+    font-size: 20rem;
+  }
+
+  .description {
+    left: 35rem;
+    bottom: 11rem;
+    font-size: 3rem;
+  }
+
+  .weather-list {
+    gap: 1rem;
+  }
+
+  .bottom {
+    font-size: 4rem;
+    color: rgba(9, 9, 71, 1);
+    font-weight: 700;
+  }
+
+  .weather-card {
+    font-size: 1rem;
+    padding: 0.5rem 0.5rem;
+    width: 10rem;
+  }
+
+  .highchart {
+    width: 100%;
+    margin-bottom: 0;
+  }
+}
+
+@media (max-width: 576px) {
+  .App {
+    height: 100vh;
+    background: url("../src/assets/main.jpg") cover;
+  }
+  input[type="text"] {
+    font-size: 1.5rem;
+    height: 3.5rem;
+  }
+  .container {
+    padding-left: 0;
+  }
+  .temperature {
+    font-size: 15rem;
+    margin-top: 1rem;
+  }
+
+  .bottom {
+    font-size: 3rem;
+    color: rgba(9, 9, 71, 1);
+    font-weight: 700;
+  }
+
+  .description {
+    left: 25rem;
+    bottom: 9rem;
   }
 
   .wind {
-    font-size: 4rem;
+    gap: ;
+  }
+  .weather-list {
+    gap: 0.7rem;
   }
 
-  .weather-list {
-    gap: 0.6rem;
-    height: 17rem;
-    margin: 0;
+  .weather-card {
+    padding: 1rem;
+    width: auto;
+  }
+
+  .day {
+    font-size: 1.2rem;
+  }
+
+  .time {
+    font-size: 1rem;
+  }
+
+  .forecast {
+    font-size: 0.8rem;
+  }
+
+  .temp {
+    font-size: 1.2rem;
+  }
+
+  .highchart {
+    width: 100%;
+    margin-bottom: 0;
   }
 }
